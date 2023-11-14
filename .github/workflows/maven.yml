@@ -21,12 +21,7 @@ jobs:
       with:
         distribution: 'adopt'
         java-version: '11' # You can adjust the Java version
-
-    - name: Set up Maven
-      uses: actions/setup-java@v2
-      with:
-        distribution: 'maven'
-        java-version: '3.8.2' # You can adjust the Maven version
+        cache: 'maven'
 
     - name: Compile the Project
       run: mvn compile
