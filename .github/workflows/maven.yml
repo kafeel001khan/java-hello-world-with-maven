@@ -29,26 +29,21 @@ jobs:
     - name: Package the Application
       run: mvn package
 
-    - name: Find and Upload Artifact
+    - name: Create Artifacts Directory
+      run: mkdir -p artifacts
+
+    - name: Find and Move JAR file
       run: |
-        # Find the JAR file
         JAR_FILE=$(find . -name "*.jar" -type f)
-        
         if [ -z "$JAR_FILE" ]; then
           echo "No JAR file found."
           exit 1
         fi
-
-        # Print the found JAR file
         echo "Found JAR file: $JAR_FILE"
-
-        # Upload the JAR file as an artifact
-        echo "Uploading artifact..."
-        mv $JAR_FILE my-application.jar
-      shell: bash
+        mv $JAR_FILE artifacts/
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v2
       with:
-        name: my-application-artifact
-        path: my-application.jar
+        name: my-artifact
+        path: artifacts/
