@@ -16,10 +16,16 @@ jobs:
     - name: Cloning the Repo
       uses: actions/checkout@v2
 
-    - name: Set up Maven
-      uses: thermofisher/setup-maven@v1.0.0
+    - name: Set up Java
+      uses: actions/setup-java@v2
       with:
-        maven-version: 3.8.2 
+        distribution: 'adopt'
+        java-version: '11' # You can adjust the Java version
+
+    - name: Set up Maven
+      uses: apache/maven-setup-action@v2
+      with:
+        maven-version: '3.8.2' # You can adjust the Maven version
 
     - name: Compile the Project
       run: mvn compile
