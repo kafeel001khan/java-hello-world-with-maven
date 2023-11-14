@@ -1,0 +1,25 @@
+name: Maven CI
+
+on:
+  push:
+    branch:
+      - '*'
+  workflow_dispatch:
+    branch:
+      - '*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Cloning the Repo
+      run: actions/checkout@v2
+
+    - name: Set up Maven
+      uses: thermofisher/setup-maven@v1.0.0
+      with:
+        maven-version: 3.8.2 
+
+    - name: Compile the Project
+      run: mvn compile
